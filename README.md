@@ -1,6 +1,10 @@
 # EcommerceFrontend
 
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
+
+![image](https://user-images.githubusercontent.com/117717342/211792501-b6f408b8-6538-4d13-ba04-373b43937db8.png)
+
 
 ## Development server
 
