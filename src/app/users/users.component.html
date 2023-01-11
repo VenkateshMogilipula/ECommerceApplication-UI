@@ -1,0 +1,28 @@
+<app-header></app-header>
+<div class="container">
+  <h4>Customers List</h4>
+  <div class="row">
+    <div class="col-sm-10">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Gender</th>
+            <th>Email Id</th>
+            <th>Phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of listOfUsers">
+            <td>{{ user.name }}</td>
+            <td>{{ user.city }}</td>
+            <td>{{ user.gender }}</td>
+            <td>{{ user.userid }}</td>
+            <td>{{ user.phone }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

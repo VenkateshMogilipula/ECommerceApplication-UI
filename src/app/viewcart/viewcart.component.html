@@ -1,0 +1,98 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <h4>My Cart</h4>
+  <div class="row">
+    <div class="col-sm-8">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Amount</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cartProduct of productInCart">
+            <td>
+              <img src="http://localhost:8080/{{ cartProduct.product.photo }}" style="width: 80px" class="mr-2 float-left" />{{
+                cartProduct.product.pname }}<br />
+              ({{ cartProduct.product.category.catname }})
+            </td>
+            <td>{{ cartProduct.product.price - (cartProduct.product.price*discountPer/100) | number : '1.2-2'}}</td>
+
+            <td>
+              <button (click)="updateqty(cartProduct.id, cartProduct.qty - 1)" class="btn btn-sm btn-info">
+                -
+              </button>
+              {{ cartProduct.qty }}
+              <button (click)="updateqty(cartProduct.id, cartProduct.qty + 1)" class="btn btn-sm btn-info">
+                +
+              </button>
+            </td>
+            <td>{{ (cartProduct.product.price - (cartProduct.product.price*discountPer/100)) * cartProduct.qty | number : '1.2-2'}}</td>
+            <td>
+              <button (click)="removefromwishlist(cartProduct.id)" class="btn btn-danger btn-sm">
+                Remove
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>Total</th>
+            <th colspan="3" class="text-right">{{ total - (total*discountPer/100) | number : '1.2-2' }}</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-body">
+          <h5>Check Out</h5>
+          <form [formGroup]="couponForm">
+            <div class="form-group">
+              <label>Card No</label>
+              <input type="text" class="form-control" maxlength="16" placeholder="16-digit Card No" />
+            </div>
+            <div class="form-group">
+              <label>Name on Card</label>
+              <input type="text" class="form-control" placeholder="Name on card" />
+            </div>
+            <div class="form-group form-row">
+              <div class="col-sm-6">
+                <label>Expiry Date</label>
+                <input type="month" class="form-control" placeholder="Name on card" />
+              </div>
+              <div class="col-sm-6">
+                <label>CVV</label>
+                <input type="text" maxlength="3" class="form-control" placeholder="CVV" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Amount</label>
+              <input type="text" readonly class="form-control" value="{{ total - (total*discountPer/100) | number : '1.2-2' }}" />
+            </div>
+            <button type="button" (click)="placeorder(null)" class="btn btn-success">
+              Place Order
+            </button>
+
+
+            <mat-form-field class="example-form-field" appearance="fill">
+              <input matInput type="text" formControlName="coupon" placeholder="Apply Coupon">
+              <button matSuffix mat-icon-button aria-label="Clear" color="primary" (click)="hello()">
+                Apply
+              </button>
+            </mat-form-field>
+
+
+            <!-- <span style="margin-left: 20px;">Apply Coupon</span> -->
+
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
